@@ -1,5 +1,7 @@
 # commit-and-pr
 
+[![Build Status](https://travis-ci.org/lupomontero/commit-and-pr.svg?branch=master)](https://travis-ci.org/lupomontero/commit-and-pr)
+
 This is **experimental** and is meant to be used as part of an automated build
 process to be run on Travis CI.
 
