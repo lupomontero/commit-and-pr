@@ -29,7 +29,7 @@ npm i --save-dev commit-and-pr
 ### CLI
 
 ```sh
-GH_TOKEN=XXX TRAVIS_REPO_SLUG=github-user/repo-name npx commit-and-pr
+GH_TOKEN=XXX TRAVIS_REPO_SLUG=github-user/repo-name npx commit-and-pr "Some commit message"
 ```
 
 #### Environment variables
@@ -72,7 +72,7 @@ Let's pretend that our update script can be run as `npm run update`.
 ```
 
 ```sh
-npm run update && npm run commit-and-pr
+npm run update && npm run commit-and-pr "Some commit message"
 ```
 
 ### Travis CI
@@ -106,13 +106,13 @@ if [[ "$TRAVIS_EVENT_TYPE" != "cron" ]]; then
   npm test
 else
   echo "Triggered by cron. Running update script..."
-  npm run update && npm run commit-and-pr
+  npm run update && npm run commit-and-pr "Some commit message"
 fi
 ```
 
 ### API
 
-`Promise commitAndPullRequest(opts)`
+`Promise commitAndPullRequest(msg, opts)`
 
 #### Options
 
@@ -127,7 +127,11 @@ fi
 const commitAndPullRequest = require('commit-and-pr');
 const { cwd, env, stdout, stderr } = process;
 
-commitAndPullRequest({ cwd: cwd(), env, stdio: ['ignore', stdout, stderr] })
+commitAndPullRequest('commit message', {
+  cwd: cwd(),
+  env,
+  stdio: ['ignore', stdout, stderr],
+})
   .then(console.log)
   .catch(console.error);
 ```

@@ -21,12 +21,8 @@ const hasUnstagedChanges = opts => spawn(
   .catch(() => true);
 
 
-const createPullRequest = (branch, opts) => new Promise((resolve, reject) => {
-  const payload = JSON.stringify({
-    title: 'Updates date',
-    head: branch,
-    base: 'master',
-  });
+const createPullRequest = (head, title, opts) => new Promise((resolve, reject) => {
+  const payload = JSON.stringify({ title, head, base: 'master' });
   const req = https.request({
     hostname: 'api.github.com',
     port: 443,
@@ -61,20 +57,20 @@ const createPullRequest = (branch, opts) => new Promise((resolve, reject) => {
 });
 
 
-const commitAndPushChanges = (opts) => {
+const commitAndPushChanges = (msg, opts) => {
   const branch = `update-date-${Date.now()}`;
   return spawn('git', ['checkout', '-b', branch], opts)
     .then(() => spawn('git', ['add', '.'], opts))
-    .then(() => spawn('git', ['commit', '-m', '"chore(house-keeping): Updates date"'], opts))
+    .then(() => spawn('git', ['commit', '-m', msg], opts))
     .then(() => spawn('git', ['remote', 'add', 'origin-with-token', `https://${opts.env.GH_TOKEN}@github.com/${opts.env.TRAVIS_REPO_SLUG}.git`], opts))
     .then(() => spawn('git', ['push', '--quiet', '--set-upstream', 'origin-with-token', branch], opts))
-    .then(() => createPullRequest(branch, opts));
+    .then(() => createPullRequest(branch, msg, opts));
 };
 
 
-module.exports = opts => hasUnstagedChanges(opts)
+module.exports = (msg, opts) => hasUnstagedChanges(opts)
   .then(shouldCommit => (
     (shouldCommit)
-      ? commitAndPushChanges(opts)
+      ? commitAndPushChanges(msg, opts)
       : opts.stdio[1].write('Already up to date\n')
   ));

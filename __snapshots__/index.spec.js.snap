@@ -54,7 +54,7 @@ Array [
   Array [
     "commit",
     "-m",
-    "\\"chore(house-keeping): Updates date\\"",
+    "Blah blah",
   ],
   Object {
     "env": Object {
@@ -101,7 +101,7 @@ exports[`commitAndPullRequest should fail to create PR request error 5`] = `
 Object {
   "headers": Object {
     "Authorization": "token xxx",
-    "Content-Length": 75,
+    "Content-Length": 72,
     "Content-Type": "application/json",
     "User-Agent": "Node.js https.request",
   },
@@ -166,7 +166,7 @@ Array [
   Array [
     "commit",
     "-m",
-    "\\"chore(house-keeping): Updates date\\"",
+    "Blah blah",
   ],
   Object {
     "env": Object {
@@ -213,7 +213,7 @@ exports[`commitAndPullRequest should reject when PR request statusCode > 201 5`]
 Object {
   "headers": Object {
     "Authorization": "token xxx",
-    "Content-Length": 75,
+    "Content-Length": 72,
     "Content-Type": "application/json",
     "User-Agent": "Node.js https.request",
   },
@@ -284,7 +284,7 @@ Array [
   Array [
     "commit",
     "-m",
-    "\\"chore(house-keeping): Updates date\\"",
+    "Blah blah",
   ],
   Object {
     "env": Object {
@@ -337,7 +337,7 @@ exports[`commitAndPullRequest should succeed when all good ;-) 5`] = `
 Object {
   "headers": Object {
     "Authorization": "token xxx",
-    "Content-Length": 75,
+    "Content-Length": 72,
     "Content-Type": "application/json",
     "User-Agent": "Node.js https.request",
   },

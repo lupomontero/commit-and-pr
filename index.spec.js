@@ -40,7 +40,7 @@ describe('commitAndPullRequest', () => {
     childProcessMock.__addMockEvents([
       [['close', [0], 0]],
     ]);
-    return commitAndPullRequest({ stdio: ['ignore', stdout] })
+    return commitAndPullRequest('', { stdio: ['ignore', stdout] })
       .then((result) => {
         expect(result).toBe(undefined);
         expect(stdout.chunks).toEqual(['Already up to date\n']);
@@ -60,7 +60,7 @@ describe('commitAndPullRequest', () => {
     httpsMock.__addMockResponses([
       new Error('Bad request'),
     ]);
-    return commitAndPullRequest({
+    return commitAndPullRequest('Blah blah', {
       env: { GH_TOKEN: 'xxx', TRAVIS_REPO_SLUG: 'some/repo' },
       stdio: ['ignore', stdout],
     })
@@ -108,7 +108,7 @@ describe('commitAndPullRequest', () => {
     httpsMock.__addMockResponses([
       { statusCode: 403 },
     ]);
-    return commitAndPullRequest({
+    return commitAndPullRequest('Blah blah', {
       env: { GH_TOKEN: 'xxx', TRAVIS_REPO_SLUG: 'some/repo' },
       stdio: ['ignore', stdout],
     })
@@ -156,7 +156,7 @@ describe('commitAndPullRequest', () => {
     httpsMock.__addMockResponses([
       { statusCode: 201, body: { html_url: 'https://foo.bar/baz' } },
     ]);
-    return commitAndPullRequest({
+    return commitAndPullRequest('Blah blah', {
       env: { GH_TOKEN: 'xxx', TRAVIS_REPO_SLUG: 'some/repo' },
       stdio: ['ignore', stdout],
     })
