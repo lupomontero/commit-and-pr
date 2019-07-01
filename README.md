@@ -1,7 +1,7 @@
 # commit-and-pr
 
 [![Build Status](https://travis-ci.org/lupomontero/commit-and-pr.svg?branch=master)](https://travis-ci.org/lupomontero/commit-and-pr)
-[![Coverage Status](https://coveralls.io/repos/github/lupomontero/commit-and-pr/badge.svg?branch=master)](https://coveralls.io/github/lupomontero/commit-and-pr?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/lupomontero/commit-and-pr/badge.svg?branch=master)](https://coveralls.io/github/lupomontero/commit-and-pr?branch=master) [![Greenkeeper badge](https://badges.greenkeeper.io/lupomontero/commit-and-pr.svg)](https://greenkeeper.io/)
 
 This is **experimental** and is meant to be used as part of an automated build
 process to be run on Travis CI.
