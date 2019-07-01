@@ -9,13 +9,14 @@ process to be run on Travis CI.
 ## Use case
 
 Our repo has some script that regularly updates something that should be updated
-on the repo (in the `psl` module we want to automate updating the Public Suffix
-List, as it changes regularly).
+on the repo (in the [`psl`](https://github.com/wrangr/psl) module we want to
+automate updating the Public Suffix List, as it changes regularly).
 
-A Travis CI cron job will trigger a build, which will detect that it has been
-triggered by a cron job and instead of simply running the tests, it will first
-run our update script, and if it produced unstaged changes, it will
-automatically send a pull request with the changes.
+A [Travis CI cron job](https://docs.travis-ci.com/user/cron-jobs/) will trigger
+a build, which will detect that it has been triggered by a cron job and instead
+of simply running the tests, it will first run our update script, and if it
+produced unstaged changes, it will automatically send a pull request with the
+changes.
 
 ## Installation
 
@@ -28,7 +29,7 @@ npm i --save-dev commit-and-pr
 ### CLI
 
 ```sh
-npx commit-and-pr
+GH_TOKEN=XXX TRAVIS_REPO_SLUG=github-user/repo-name npx commit-and-pr
 ```
 
 #### Environment variables
@@ -77,6 +78,10 @@ npm run update && npm run commit-and-pr
 ### Travis CI
 
 Continuing with the `npm-scripts` example...
+
+```sh
+travis encrypt GH_TOKEN=<YOUR-GITHUB-PERSONAL-ACCESS-TOKEN>
+```
 
 `.travis.yml`:
 
