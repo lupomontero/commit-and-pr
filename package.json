@@ -1,0 +1,15 @@
+{
+  "name": "travis-cron-update",
+  "version": "1.0.0",
+  "main": "index.js",
+  "bin": {
+    "travis-cron-update": "./cli.js"
+  },
+  "scripts": {
+    "test": "jest --verbose --coverage"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^24.8.0"
+  }
+}
