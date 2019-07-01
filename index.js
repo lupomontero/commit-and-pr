@@ -72,7 +72,7 @@ const commitAndPushChanges = (opts) => {
 };
 
 
-exports.update = opts => hasUnstagedChanges(opts)
+module.exports = opts => hasUnstagedChanges(opts)
   .then((shouldCommit) => (
     (shouldCommit)
       ? commitAndPushChanges(opts)

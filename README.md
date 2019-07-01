@@ -1,5 +1,19 @@
 # commit-and-pr
 
+This is **experimental** and is meant to be used as part of an automated build
+process to be run on Travis CI.
+
+## Use case
+
+Our repo has some script that regularly updates something that should be updated
+on the repo (in the `psl` module we want to automate updating the Public Suffix
+List, as it changes regularly).
+
+A Travis CI cron job will trigger a build, which will detect that it has been
+triggered by a cron job and instead of simply running the tests, it will first
+run our update script, and if it produced unstaged changes, it will
+automatically send a pull request with the changes.
+
 ## Installation
 
 ```sh
@@ -14,28 +28,10 @@ npm i --save-dev commit-and-pr
 npx commit-and-pr
 ```
 
-### npm-scripts
-
-`package.json`:
-
-```json
-{
-  ...
-  "scripts": {
-    "update": "date > date.out",
-    "commit-and-pr": "commit-and-pr"
-  },
-  ...
-}
-```
-
-```sh
-npm run update && npm run commit-and-pr
-```
-
 #### Environment variables
 
-* `GH_TOKEN`: A GitHub Personal access token with write access to the repo.
+* `GH_TOKEN`: A GitHub Personal access token with write access to the repo. This
+  is needed in order to push changes back to GitHub and send a Pull Request.
 * `TRAVIS_REPO_SLUG`: The repo slug (ie: `github-user/repo-name`). If your build
   id running on Travis CI this is already set in the environment.
 
@@ -54,13 +50,76 @@ Optional `git` related env vars:
 >
 > See: https://git-scm.com/docs/git-commit-tree#_commit_information
 
+### npm-scripts
+
+Let's pretend that our update script can be run as `npm run update`.
+
+`package.json`:
+
+```json
+{
+  ...
+  "scripts": {
+    "update": "date > date.out",
+    "commit-and-pr": "commit-and-pr"
+  },
+  ...
+}
+```
+
+```sh
+npm run update && npm run commit-and-pr
+```
+
+### Travis CI
+
+Continuing with the `npm-scripts` example...
+
+`.travis.yml`:
+
+```yml
+language: node_js
+node_js:
+  - 10
+  - 12
+script: ./scripts/build.sh
+env:
+  - secure: "XXXX="
+```
+
+`./scripts/build.sh`:
+
+```sh
+#! /usr/bin/env bash
+
+
+if [[ "$TRAVIS_EVENT_TYPE" != "cron" ]]; then
+  echo "Not triggered by cron. Running tests..."
+  npm test
+else
+  echo "Triggered by cron. Running update script..."
+  npm run update && npm run commit-and-pr
+fi
+```
+
 ### API
 
+`Promise commitAndPullRequest(opts)`
+
+#### Options
+
+* `cwd`
+* `env`
+* `stdout`
+* `stderr`
+
+#### Example
+
 ```js
-const { update } = require('commit-and-pr');
+const commitAndPullRequest = require('commit-and-pr');
 const { cwd, env, stdout, stderr } = process;
 
-update({ cwd: cwd(), env, stdio: ['ignore', stdout, stderr] })
+commitAndPullRequest({ cwd: cwd(), env, stdio: ['ignore', stdout, stderr] })
   .then(console.log)
   .catch(console.error);
 ```

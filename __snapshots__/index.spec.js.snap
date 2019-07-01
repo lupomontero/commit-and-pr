@@ -1,29 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`build.update should fail to create PR request error 1`] = `
-Array [
-  "npm",
-  Array [
-    "run",
-    "update",
-  ],
-  Object {
-    "env": Object {
-      "GH_TOKEN": "xxx",
-      "TRAVIS_REPO_SLUG": "some/repo",
-    },
-    "stdio": Array [
-      "ignore",
-      Object {
-        "chunks": Array [],
-        "writable": true,
-      },
-    ],
-  },
-]
-`;
-
-exports[`build.update should fail to create PR request error 2`] = `
+exports[`commitAndPullRequest should fail to create PR request error 1`] = `
 Array [
   "git",
   Array [
@@ -48,57 +25,7 @@ Array [
 ]
 `;
 
-exports[`build.update should fail to create PR request error 3`] = `
-Array [
-  "git",
-  Array [
-    "config",
-    "--global",
-    "user.email",
-    "travis@travis-ci.org",
-  ],
-  Object {
-    "env": Object {
-      "GH_TOKEN": "xxx",
-      "TRAVIS_REPO_SLUG": "some/repo",
-    },
-    "stdio": Array [
-      "ignore",
-      Object {
-        "chunks": Array [],
-        "writable": true,
-      },
-    ],
-  },
-]
-`;
-
-exports[`build.update should fail to create PR request error 4`] = `
-Array [
-  "git",
-  Array [
-    "config",
-    "--global",
-    "user.name",
-    "Travis CI",
-  ],
-  Object {
-    "env": Object {
-      "GH_TOKEN": "xxx",
-      "TRAVIS_REPO_SLUG": "some/repo",
-    },
-    "stdio": Array [
-      "ignore",
-      Object {
-        "chunks": Array [],
-        "writable": true,
-      },
-    ],
-  },
-]
-`;
-
-exports[`build.update should fail to create PR request error 5`] = `
+exports[`commitAndPullRequest should fail to create PR request error 2`] = `
 Array [
   "git",
   Array [
@@ -121,7 +48,7 @@ Array [
 ]
 `;
 
-exports[`build.update should fail to create PR request error 6`] = `
+exports[`commitAndPullRequest should fail to create PR request error 3`] = `
 Array [
   "git",
   Array [
@@ -145,7 +72,7 @@ Array [
 ]
 `;
 
-exports[`build.update should fail to create PR request error 7`] = `
+exports[`commitAndPullRequest should fail to create PR request error 4`] = `
 Array [
   "git",
   Array [
@@ -170,7 +97,7 @@ Array [
 ]
 `;
 
-exports[`build.update should fail to create PR request error 8`] = `
+exports[`commitAndPullRequest should fail to create PR request error 5`] = `
 Object {
   "headers": Object {
     "Authorization": "token xxx",
@@ -185,30 +112,7 @@ Object {
 }
 `;
 
-exports[`build.update should reject when PR request statusCode > 201 1`] = `
-Array [
-  "npm",
-  Array [
-    "run",
-    "update",
-  ],
-  Object {
-    "env": Object {
-      "GH_TOKEN": "xxx",
-      "TRAVIS_REPO_SLUG": "some/repo",
-    },
-    "stdio": Array [
-      "ignore",
-      Object {
-        "chunks": Array [],
-        "writable": true,
-      },
-    ],
-  },
-]
-`;
-
-exports[`build.update should reject when PR request statusCode > 201 2`] = `
+exports[`commitAndPullRequest should reject when PR request statusCode > 201 1`] = `
 Array [
   "git",
   Array [
@@ -233,57 +137,7 @@ Array [
 ]
 `;
 
-exports[`build.update should reject when PR request statusCode > 201 3`] = `
-Array [
-  "git",
-  Array [
-    "config",
-    "--global",
-    "user.email",
-    "travis@travis-ci.org",
-  ],
-  Object {
-    "env": Object {
-      "GH_TOKEN": "xxx",
-      "TRAVIS_REPO_SLUG": "some/repo",
-    },
-    "stdio": Array [
-      "ignore",
-      Object {
-        "chunks": Array [],
-        "writable": true,
-      },
-    ],
-  },
-]
-`;
-
-exports[`build.update should reject when PR request statusCode > 201 4`] = `
-Array [
-  "git",
-  Array [
-    "config",
-    "--global",
-    "user.name",
-    "Travis CI",
-  ],
-  Object {
-    "env": Object {
-      "GH_TOKEN": "xxx",
-      "TRAVIS_REPO_SLUG": "some/repo",
-    },
-    "stdio": Array [
-      "ignore",
-      Object {
-        "chunks": Array [],
-        "writable": true,
-      },
-    ],
-  },
-]
-`;
-
-exports[`build.update should reject when PR request statusCode > 201 5`] = `
+exports[`commitAndPullRequest should reject when PR request statusCode > 201 2`] = `
 Array [
   "git",
   Array [
@@ -306,7 +160,7 @@ Array [
 ]
 `;
 
-exports[`build.update should reject when PR request statusCode > 201 6`] = `
+exports[`commitAndPullRequest should reject when PR request statusCode > 201 3`] = `
 Array [
   "git",
   Array [
@@ -330,7 +184,7 @@ Array [
 ]
 `;
 
-exports[`build.update should reject when PR request statusCode > 201 7`] = `
+exports[`commitAndPullRequest should reject when PR request statusCode > 201 4`] = `
 Array [
   "git",
   Array [
@@ -355,7 +209,7 @@ Array [
 ]
 `;
 
-exports[`build.update should reject when PR request statusCode > 201 8`] = `
+exports[`commitAndPullRequest should reject when PR request statusCode > 201 5`] = `
 Object {
   "headers": Object {
     "Authorization": "token xxx",
@@ -370,33 +224,7 @@ Object {
 }
 `;
 
-exports[`build.update should succeed when all good ;-) 1`] = `
-Array [
-  "npm",
-  Array [
-    "run",
-    "update",
-  ],
-  Object {
-    "env": Object {
-      "GH_TOKEN": "xxx",
-      "TRAVIS_REPO_SLUG": "some/repo",
-    },
-    "stdio": Array [
-      "ignore",
-      Object {
-        "chunks": Array [
-          "Pull request created. See https://foo.bar/baz
-",
-        ],
-        "writable": true,
-      },
-    ],
-  },
-]
-`;
-
-exports[`build.update should succeed when all good ;-) 2`] = `
+exports[`commitAndPullRequest should succeed when all good ;-) 1`] = `
 Array [
   "git",
   Array [
@@ -424,63 +252,7 @@ Array [
 ]
 `;
 
-exports[`build.update should succeed when all good ;-) 3`] = `
-Array [
-  "git",
-  Array [
-    "config",
-    "--global",
-    "user.email",
-    "travis@travis-ci.org",
-  ],
-  Object {
-    "env": Object {
-      "GH_TOKEN": "xxx",
-      "TRAVIS_REPO_SLUG": "some/repo",
-    },
-    "stdio": Array [
-      "ignore",
-      Object {
-        "chunks": Array [
-          "Pull request created. See https://foo.bar/baz
-",
-        ],
-        "writable": true,
-      },
-    ],
-  },
-]
-`;
-
-exports[`build.update should succeed when all good ;-) 4`] = `
-Array [
-  "git",
-  Array [
-    "config",
-    "--global",
-    "user.name",
-    "Travis CI",
-  ],
-  Object {
-    "env": Object {
-      "GH_TOKEN": "xxx",
-      "TRAVIS_REPO_SLUG": "some/repo",
-    },
-    "stdio": Array [
-      "ignore",
-      Object {
-        "chunks": Array [
-          "Pull request created. See https://foo.bar/baz
-",
-        ],
-        "writable": true,
-      },
-    ],
-  },
-]
-`;
-
-exports[`build.update should succeed when all good ;-) 5`] = `
+exports[`commitAndPullRequest should succeed when all good ;-) 2`] = `
 Array [
   "git",
   Array [
@@ -506,7 +278,7 @@ Array [
 ]
 `;
 
-exports[`build.update should succeed when all good ;-) 6`] = `
+exports[`commitAndPullRequest should succeed when all good ;-) 3`] = `
 Array [
   "git",
   Array [
@@ -533,7 +305,7 @@ Array [
 ]
 `;
 
-exports[`build.update should succeed when all good ;-) 7`] = `
+exports[`commitAndPullRequest should succeed when all good ;-) 4`] = `
 Array [
   "git",
   Array [
@@ -561,7 +333,7 @@ Array [
 ]
 `;
 
-exports[`build.update should succeed when all good ;-) 8`] = `
+exports[`commitAndPullRequest should succeed when all good ;-) 5`] = `
 Object {
   "headers": Object {
     "Authorization": "token xxx",
