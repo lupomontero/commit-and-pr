@@ -7,13 +7,15 @@
   },
   "scripts": {
     "pretest": "eslint .",
-    "test": "jest --verbose --coverage"
+    "test": "jest --verbose --coverage",
+    "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls"
   },
   "license": "MIT",
   "dependencies": {
     "minimist": "^1.2.0"
   },
   "devDependencies": {
+    "coveralls": "^3.0.4",
     "eslint": "^6.0.1",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.18.0",
