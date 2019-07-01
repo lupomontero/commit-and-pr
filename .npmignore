@@ -1,6 +1,6 @@
 .eslintrc
 .travis.yml
 index.spec.js
-README.md
 __mocks__/
 __snapshots__/
+coverage/
