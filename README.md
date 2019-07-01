@@ -1,22 +1,24 @@
 # commit-and-pr
 
 [![Build Status](https://travis-ci.org/lupomontero/commit-and-pr.svg?branch=master)](https://travis-ci.org/lupomontero/commit-and-pr)
-[![Coverage Status](https://coveralls.io/repos/github/lupomontero/commit-and-pr/badge.svg?branch=master)](https://coveralls.io/github/lupomontero/commit-and-pr?branch=master) [![Greenkeeper badge](https://badges.greenkeeper.io/lupomontero/commit-and-pr.svg)](https://greenkeeper.io/)
+[![Coverage Status](https://coveralls.io/repos/github/lupomontero/commit-and-pr/badge.svg?branch=master)](https://coveralls.io/github/lupomontero/commit-and-pr?branch=master)
+[![Greenkeeper badge](https://badges.greenkeeper.io/lupomontero/commit-and-pr.svg)](https://greenkeeper.io/)
 
 This is **experimental** and is meant to be used as part of an automated build
 process to be run on Travis CI.
 
 ## Use case
 
-Our repo has some script that regularly updates something that should be updated
-on the repo (in the [`psl`](https://github.com/wrangr/psl) module we want to
-automate updating the Public Suffix List, as it changes regularly).
+A GitHub repo has some script that updates files that should then be commited
+and merged back on the repo. The initial use case is the [`psl`](https://github.com/wrangr/psl)
+repo, where we want to automate updating the _Public Suffix List_, as it changes
+ regularly. See [this issue](https://github.com/wrangr/psl/issues/5).
 
-A [Travis CI cron job](https://docs.travis-ci.com/user/cron-jobs/) will trigger
-a build, which will detect that it has been triggered by a cron job and instead
-of simply running the tests, it will first run our update script, and if it
-produced unstaged changes, it will automatically send a pull request with the
-changes.
+The idea is that a [Travis CI cron job](https://docs.travis-ci.com/user/cron-jobs/)
+will trigger a build script, which will detect that it has been triggered by a
+cron job and instead of running the tests, it will run our update script, and if
+it resulted in unstaged changes, it will automatically send a pull request with
+the changes.
 
 ## Installation
 
@@ -44,7 +46,7 @@ Optional `git` related env vars:
 * `EMAIL`: Fallback for `GIT_AUTHOR_EMAIL` and `GIT_COMMITTER_EMAIL`.
 * `GIT_AUTHOR_NAME`: The human readable author name.
 * `GIT_AUTHOR_EMAIL`: (optional). If not present will default to `EMAIL`.
-* `GIT_COMMITTER_NAME`: ??
+* `GIT_COMMITTER_NAME`: The human readable committer name.
 * `GIT_COMMITTER_EMAIL`: (optional). If not present will default to `EMAIL`.
 
 > In case (some of) these environment variables are not set, the information is
