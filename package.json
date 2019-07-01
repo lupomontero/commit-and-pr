@@ -1,6 +1,6 @@
 {
   "name": "commit-and-pr",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "index.js",
   "bin": {
     "commit-and-pr": "./cli.js"
