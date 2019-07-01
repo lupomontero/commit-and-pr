@@ -1,14 +1,17 @@
 {
-  "name": "travis-cron-update",
+  "name": "commit-and-pr",
   "version": "1.0.0",
   "main": "index.js",
   "bin": {
-    "travis-cron-update": "./cli.js"
+    "commit-and-pr": "./cli.js"
   },
   "scripts": {
     "test": "jest --verbose --coverage"
   },
   "license": "MIT",
+  "dependencies": {
+    "minimist": "^1.2.0"
+  },
   "devDependencies": {
     "jest": "^24.8.0"
   }

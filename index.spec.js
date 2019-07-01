@@ -1,7 +1,7 @@
 const { Writable } = require('stream');
 const childProcessMock = require('child_process');
 const httpsMock = require('https');
-const { test, update } = require('./');
+const { update } = require('./');
 
 
 jest.mock('child_process');
@@ -23,43 +23,7 @@ class OutStream extends Writable {
 }
 
 
-describe('build.test', () => {
-  beforeEach(() => {
-    childProcessMock.spawn.mockClear();
-  });
-
-  it('should be a function', () => {
-    expect(typeof test).toBe('function');
-  });
-
-  it('should resolve to undefined when exit code 0', () => {
-    childProcessMock.__addMockEvents([
-      [['close', [0], 0]],
-    ]);
-    return test()
-      .then((result) => {
-        expect(result).toBe(undefined);
-        expect(childProcessMock.spawn.mock.calls.length).toBe(1);
-        expect(childProcessMock.spawn.mock.calls[0]).toEqual(['npm', ['test'], {}]);
-      });
-  });
-
-  it('should reject when exit code > 0', () => {
-    childProcessMock.__addMockEvents([
-      [['close', [1], 0]],
-    ]);
-    return test()
-      .then(() => { throw new Error('Promise did not reject!')})
-      .catch((err) => {
-        expect(err.message).toBe('Command npm test exited with code 1');
-        expect(childProcessMock.spawn.mock.calls.length).toBe(1);
-        expect(childProcessMock.spawn.mock.calls[0]).toEqual(['npm', ['test'], {}]);
-      });
-  });
-});
-
-
-describe('build.update', () => {
+describe('update', () => {
   beforeEach(() => {
     childProcessMock.spawn.mockClear();
     httpsMock.request.mockClear();

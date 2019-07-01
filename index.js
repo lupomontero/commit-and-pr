@@ -21,18 +21,6 @@ const hasUnstagedChanges = opts => spawn(
   .catch(() => true);
 
 
-const setupGit = opts => spawn(
-  'git',
-  ['config', '--global', 'user.email', 'travis@travis-ci.org'],
-  opts,
-)
-  .then(() => spawn(
-    'git',
-    ['config', '--global', 'user.name', 'Travis CI'],
-    opts,
-  ));
-
-
 const createPullRequest = (branch, opts) => new Promise((resolve, reject) => {
   const payload = JSON.stringify({
     title: 'Updates date',
@@ -76,7 +64,6 @@ const createPullRequest = (branch, opts) => new Promise((resolve, reject) => {
 const commitAndPushChanges = (opts) => {
   const branch = `update-date-${Date.now()}`;
   return spawn('git', ['checkout', '-b', branch], opts)
-    .then(() => setupGit(opts))
     .then(() => spawn('git', ['add', '.'], opts))
     .then(() => spawn('git', ['commit', '-m', '"chore(house-keeping): Updates date"'], opts))
     .then(() => spawn('git', ['remote', 'add', 'origin-with-token', `https://${opts.env.GH_TOKEN}@github.com/${opts.env.TRAVIS_REPO_SLUG}.git`], opts))
@@ -85,13 +72,9 @@ const commitAndPushChanges = (opts) => {
 };
 
 
-exports.update = opts => spawn('npm', ['run', 'update'], opts)
-  .then(() => hasUnstagedChanges(opts))
+exports.update = opts => hasUnstagedChanges(opts)
   .then((shouldCommit) => (
     (shouldCommit)
       ? commitAndPushChanges(opts)
       : opts.stdio[1].write('Already up to date\n')
   ));
-
-
-exports.test = opts => spawn('npm', ['test'], opts);
