@@ -13,9 +13,11 @@ class OutStream extends Writable {
     super(opts);
     this.chunks = [];
   }
+
   write(chunk) {
     this.chunks.push(chunk);
   }
+
   toJSON() {
     const { chunks, writable } = this;
     return { chunks, writable };

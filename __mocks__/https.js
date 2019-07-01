@@ -5,6 +5,7 @@ class Request extends Writable {
     super(opts);
     this.chunks = [];
   }
+
   write(chunk) {
     this.chunks.push(chunk);
   }
@@ -16,6 +17,7 @@ class Response extends Readable {
     this.statusCode = statusCode;
     this.body = statusCode > 201 ? body : JSON.stringify(body);
   }
+
   _read() {
     this.push(this.body, 'utf8');
     this.push(null);
@@ -38,6 +40,6 @@ exports.request = jest.fn().mockImplementation(() => {
 });
 
 
-exports.__addMockResponses = responses => {
+exports.__addMockResponses = (responses) => {
   responses.forEach(response => mockResponses.push(response));
 };

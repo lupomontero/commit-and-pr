@@ -2,13 +2,13 @@ const https = require('https');
 const childProcess = require('child_process');
 
 
-const spawn = (cmd, args = [], opts = {}) => new Promise(
+const spawn = (cmd, args, opts) => new Promise(
   (resolve, reject) => childProcess.spawn(cmd, args, opts)
     .on('close', code => (
       (code > 0)
         ? reject(new Error(`Command ${cmd} ${args.join(' ')} exited with code ${code}`))
         : resolve()
-    ))
+    )),
 );
 
 
@@ -52,7 +52,7 @@ const createPullRequest = (branch, opts) => new Promise((resolve, reject) => {
       }
       const responseJson = JSON.parse(chunks.join(''));
       opts.stdio[1].write(`Pull request created. See ${responseJson.html_url}\n`);
-      resolve();
+      return resolve();
     });
   });
 
@@ -73,7 +73,7 @@ const commitAndPushChanges = (opts) => {
 
 
 module.exports = opts => hasUnstagedChanges(opts)
-  .then((shouldCommit) => (
+  .then(shouldCommit => (
     (shouldCommit)
       ? commitAndPushChanges(opts)
       : opts.stdio[1].write('Already up to date\n')

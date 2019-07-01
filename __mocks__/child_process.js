@@ -2,7 +2,7 @@ const EventEmitter = require('events');
 
 const mockEvents = [];
 
-exports.spawn = jest.fn().mockImplementation((cmd, args = [], opts = {}) => {
+exports.spawn = jest.fn().mockImplementation(() => {
   const events = mockEvents.shift();
   const ee = new EventEmitter();
 
@@ -14,6 +14,6 @@ exports.spawn = jest.fn().mockImplementation((cmd, args = [], opts = {}) => {
 });
 
 
-exports.__addMockEvents = events => {
+exports.__addMockEvents = (events) => {
   events.forEach(event => mockEvents.push(event));
 };

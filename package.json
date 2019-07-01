@@ -6,6 +6,7 @@
     "commit-and-pr": "./cli.js"
   },
   "scripts": {
+    "pretest": "eslint .",
     "test": "jest --verbose --coverage"
   },
   "license": "MIT",
@@ -13,6 +14,9 @@
     "minimist": "^1.2.0"
   },
   "devDependencies": {
+    "eslint": "^6.0.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.18.0",
     "jest": "^24.8.0"
   }
 }

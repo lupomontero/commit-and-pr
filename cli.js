@@ -5,7 +5,12 @@ const commitAndPullRequest = require('./');
 
 
 if (require.main === module) {
-  const { cwd, env, stdout, stderr } = process;
+  const {
+    cwd,
+    env,
+    stdout,
+    stderr,
+  } = process;
 
   commitAndPullRequest({ env, cwd: cwd(), stdio: ['ignore', stdout, stderr] })
     .then(data => console.log(data) || process.exit(0))
