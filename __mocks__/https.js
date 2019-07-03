@@ -30,11 +30,11 @@ exports.request = jest.fn().mockImplementation(() => {
   const req = new Request();
   const result = mockResponses.shift();
 
-  if (result instanceof Error) {
-    setTimeout(() => req.emit('error', result), 0);
-  } else {
-    setTimeout(() => req.emit('response', new Response(result)), 0);
-  }
+  setTimeout(() => (
+    (result instanceof Error)
+      ? req.emit('error', result)
+      : req.emit('response', new Response(result))
+  ), 0);
 
   return req;
 });
